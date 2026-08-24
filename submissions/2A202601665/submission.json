@@ -1,0 +1,78 @@
+{
+  "schema_version": "1.0.0",
+  "metadata": {
+    "student_name": "Lai The Rin",
+    "student_id": "2A202601665",
+    "group_id": "GROUP-01",
+    "submitted_at": "2026-08-24T12:00:00+07:00"
+  },
+  "industry": "healthcare-assistant",
+  "product_context": {
+    "product_name": "MediGuide Health Assistant",
+    "product_stage": "pilot",
+    "problem_statement": "Patients in rural and underserved areas have limited access to qualified physicians and often experience delayed diagnosis or inappropriate self-treatment due to lack of medical knowledge and healthcare professional availability.",
+    "target_users": ["patients in rural areas", "patients with limited healthcare access", "primary care physicians seeking clinical decision support"],
+    "value_hypothesis": "AI-assisted symptom triage and health information can reduce unnecessary emergency visits by 30% and decrease time-to-appropriate-care for patients who would otherwise delay seeking medical attention.",
+    "in_scope": ["symptom assessment and triage", "health information retrieval", "appointment recommendation based on urgency", "medication interaction checking", "follow-up reminder system"],
+    "non_goals": ["final diagnosis without physician involvement", "prescription generation", "treatment plan determination", "emergency dispatch", "mental health crisis intervention", "diagnosis of complex rare diseases"],
+    "user_journey_moment": "After patient experiences symptoms and before they decide whether to seek care, visit a pharmacy, or wait and monitor",
+    "target_launch_or_review_date": "2027-06-01",
+    "automation_level": "recommendation",
+    "fallback_experience": "When the system detects high-risk symptoms emergency-level acuity or user requests physician consultation the system displays clear escalation instructions and provides hotline numbers. All recommendations include explicit disclaimers that AI assistance does not replace professional medical advice.",
+    "decision_reversibility": "partially-reversible"
+  },
+  "system_profile": {
+    "purpose": "Provide conversational health guidance symptom assessment and care pathway recommendations to patients who lack immediate access to qualified healthcare professionals.",
+    "user_groups": ["general patients seeking health information", "caregivers seeking guidance for family members", "healthcare workers in resource-limited settings"],
+    "decision_impact": "Recommendations influence whether and when patients seek professional medical care. They do not replace physician decisions but can delay or accelerate appropriate care-seeking behavior.",
+    "data_types": ["user-reported symptoms", "medical history (optional)", "medication lists", "demographic information for health equity monitoring"],
+    "deployment_context": "A healthcare technology company deploys the system as a mobile application accessible to consumers in Vietnam with planned expansion to EU markets. The system uses cloud-based AI inference with data processed in compliant regional data centers.",
+    "target_markets": ["Vietnam", "European Union"],
+    "system_boundary": {
+      "model": "large language model fine-tuned on medical literature and validated symptom databases",
+      "application": "mobile application with conversational interface and symptom checker",
+      "people": ["patients", "caregivers", "physician reviewers", "customer support agents", "compliance officers"],
+      "vendors": ["cloud AI infrastructure provider", "medical content partner", "notification service provider"],
+      "upstream_inputs": ["validated medical symptom data", "medication databases", "health facility directories", "user-reported symptoms"],
+      "downstream_decisions": ["seek immediate emergency care", "schedule primary care appointment", "visit pharmacy", "monitor symptoms at home", "escalate to nurse hotline"]
+    }
+  },
+  "industry_risk_snapshot": {
+    "harm_severity": 5,
+    "high_stakes": 5,
+    "sensitive_data": 4,
+    "affected_scale": 4,
+    "human_review_need": 5,
+    "rationale": "Healthcare AI directly affects life-and-death decisions and physical wellbeing. Incorrect triage recommendations can lead to delayed treatment for stroke heart attack or sepsis or inappropriate emergency room utilization. Medical data is highly sensitive under GDPR and Vietnamese privacy regulations. The affected population includes vulnerable groups such as elderly patients and those with limited health literacy who may over-trust AI recommendations. Human medical judgment remains essential for diagnosis; automation can reduce access to appropriate care if recommendations are incorrect or misinterpreted. All recommendations must include clear escalation paths and physician oversight mechanisms."
+  },
+  "legal_classification": {
+    "vietnam": {
+      "status": "high-risk",
+      "rationale": "AI systems used in healthcare diagnosis treatment or patient guidance in Vietnam fall under the high-risk category according to Vietnam AI Law 134/2025/QH15 and Decision 33/2026/QD-TTg. The system provides health recommendations that influence care-seeking decisions requiring compliance with medical device software regulations and healthcare AI specific requirements.",
+      "source_ids": ["SRC-01", "SRC-02"]
+    },
+    "eu": {
+      "status": "high-risk",
+      "rationale": "Healthcare AI systems under EU AI Act Annex III are classified as high-risk when used for diagnosis treatment or health management purposes. The system qualifies under medical device software provisions and requires conformity assessment before market placement. The August 2027 timeline applies for high-risk system obligations.",
+      "source_ids": ["SRC-03"]
+    },
+    "other_markets": "United States FDA may classify this as Software as a Medical Device requiring 510(k) clearance or De Novo classification depending on specific claims and risk profile.",
+    "legal_review_required": true
+  },
+  "product_metrics": {
+    "success_kpi": "Patient time-to-appropriate-care is reduced by at least 25% compared to baseline without AI assistance as measured by survey follow-up at 14 days post-interaction.",
+    "risk_kri": "Percentage of high-acuity cases who received appropriate emergency referral remains above 98% and percentage of low-acuity cases incorrectly escalated to emergency remains below 5%.",
+    "guardrail_metric": "Zero instances of the system providing definitive diagnostic claims or prescription recommendations without explicit physician verification in production.",
+    "review_cadence": "Monthly monitoring of triage accuracy metrics and adverse event review. Triggered review required on any safety incident escalation failure or material change to model training data algorithm or target market."
+  },
+  "release_decision": {
+    "accountable_product_owner": "Healthcare Product Owner",
+    "risk_acceptance_owner": "Chief Medical Officer",
+    "independent_reviewer": "Healthcare AI Ethics and Safety Board",
+    "decision": "conditional-go",
+    "release_blockers": ["GAP-01: Vietnam high-risk classification documentation not completed", "GAP-02: EU conformity assessment evidence not prepared", "GAP-03: Physician oversight protocol not audited", "GAP-04: Adverse event response procedure not tested", "GAP-05: Bias testing and fairness validation not completed", "GAP-06: Medication database RAG not implemented", "GAP-07: Privacy and consent framework not deployed"],
+    "release_conditions": ["Completed Vietnam regulatory classification with approved documentation", "EU market readiness assessment signed by Compliance Lead", "Physician reviewer panel trained and on-call schedule established", "Adverse event response procedure tested with tabletop exercise", "Patient-facing disclaimers reviewed by legal counsel"],
+    "next_review_trigger": "Any patient safety incident related to triage recommendation, material change in AI capabilities, new target market entry, or 2027-06-01 pilot completion review whichever comes first.",
+    "residual_risk_rationale": "The system is designed for recommendation-only with mandatory escalation for high-acuity cases. All recommendations include physician escalation prompts and clear disclaimers. The pilot phase limits exposure to 10000 users with intensive monitoring. However residual risk remains significant given healthcare stakes and the possibility of user over-reliance on AI guidance in situations requiring professional medical judgment."
+  }
+}
